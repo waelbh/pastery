@@ -1,0 +1,77 @@
+<!-- <nb-layout>
+  <nb-layout-header fixed>
+    <button nbButton status="success" size="tiny" >Toggle</button>
+    <button nbButton status="info" size="tiny" >Toggle Compact</button>
+  </nb-layout-header>
+</nb-layout> -->
+<nb-card> 
+  
+    <nb-card-body class="example-items-rows">
+      <div>
+      <input type ='text' [(ngModel)]="listFilter" placeholder="entrer nom" nbInput/>
+    </div>    <!-- <button (click)="onClick()" nbButton class="nbButton">Filter</button> -->
+      <h6> Filter par Nom</h6>
+
+    </nb-card-body>
+  </nb-card>
+
+        <nb-card class="table">
+            <nb-card-body>
+                <div overflow-x:auto>
+                    <table  >
+                        <thead>
+                        <tr>
+                                <th style="width: 10%; height: 3%;"*ngFor="let Col of allColumns">{{Col}}</th>
+                            </tr>
+                        </thead>
+                        <ng-container>                           
+                            <thead *ngIf="matPrems && matPrems.length">
+                                <tr *ngFor="let data of filteredMats">
+                                    <td id="first"> {{data?.id}}</td>
+                                    <td><a [routerLink]="['sel-mat/', data.id]">{{data?.name}}</a></td>
+                                    <td>{{data?.unit}}</td>
+                                    <td>{{data?.quantity}}</td>
+                                </tr>
+                            </thead>
+                        
+                        </ng-container>
+                  </table>
+              </div>
+            
+           </nb-card-body>
+      </nb-card>
+
+
+    <!-- <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" equalColumnsWidth>
+
+      <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+      <ng-container [nbTreeGridColumnDef]="customColumn">
+
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef nbSortHeader>
+            {{customColumn}}
+            <span *nbSortHeaderIcon="let asc = isAscending; let desc = isDescending">
+              <span *ngIf="asc" class="nb-chevron-down" aria-label="sorted ascending"></span>
+              <span *ngIf="desc" class="nb-chevron-up" aria-label="sorted descending"></span>
+            </span>
+          </th>
+
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            <button nbTreeGridRowToggle
+                    *ngIf="row.hasChildren()"
+                    [attr.aria-label]="row.expanded ? 'collapse' : 'expand'">
+              <span [ngClass]="{'nb-chevron-down': row.expanded, 'nb-chevron-right': !row.expanded}"
+                    aria-hidden="true">
+              </span>
+            </button>
+            {{row.data.name}}
+          </td>
+
+        </ng-container>
+
+        <ng-container *ngFor="let column of defaultColumns" [nbTreeGridColumnDef]="column">
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{column}}</th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column]}}</td>
+        </ng-container> -->
+       
