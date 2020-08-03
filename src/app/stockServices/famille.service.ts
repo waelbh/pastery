@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Famille } from '../modelsInt/famille';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 const httpOptions = { 
@@ -14,15 +15,32 @@ const httpOptions = {
     providedIn:'root'
 })
 export class FamilleService {
-     UrlGL1=" http://localhost:8080/api/v1/familles";
-     UrlGL2=" http://localhost:8080/api/v1/famillefamille/{id}";
-    
+     Url1=" http://localhost:8080/api/v1/familles";
+     Url2=" http://localhost:8080/api/v1/famillefamille";
+    //@GetMapping("/familles")
+    //@GetMapping("/famille/{id}")
+    //@PostMapping("/famille")
+    //@PutMapping("/famille/{id}")
+    //@DeleteMapping("/famille/{id}")
      
     constructor(private http : HttpClient){}
 
-    getFamilleAll():Observable<Famille[]>{
-        return this.http.get<Famille[]>(this.UrlGL1);
+    retreiveAllFam():Observable<Famille[]>{
+        return this.http.get<Famille[]>(this.Url1);
       }
+    retreiveOneFam(id:number):Observable<Famille>{
+      return this.http.get<Famille>(this.Url2+'/'+id);
+    }
+    createFam(fam:Famille):Observable<Famille>{
+      return this.http.post<Famille>(this.Url1,fam);
+    }
+    editFam(fam:Famille,id:number):Observable<Famille>{
+      let body = JSON.stringify(fam);
+      return this.http.put<Famille>(this.Url2+'/'+id,body,httpOptions);
+    }
+    removeFam(id:number):Observable<any>{
+      return this.http.delete(this.Url2+'/'+id,{responseType:'text'});
+    }
 
      
 }

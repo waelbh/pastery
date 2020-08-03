@@ -57,7 +57,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Gestion Depot',
         link:'/pages/tables/depot',
       },
-
+      {
+        title: 'Gestion Fournisseur',
+        link:'/pages/tables/fournisseur',
+      },
+      {
+        title: 'Gestion Bon de Réception',
+        link:'/pages/tables/bon-reception',
+      },
     
     ],
   },

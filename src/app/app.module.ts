@@ -20,8 +20,10 @@ import {
   NbToastrModule,
   NbWindowModule,
   NbSelectModule,
+  
 } from '@nebular/theme';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CustomDatePipe } from './custom.datepipe';
 
 @NgModule({
   declarations: [AppComponent],

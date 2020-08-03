@@ -19,7 +19,7 @@ export class MatierePremiere implements IMatierePrem{
     stockLimit?: number
     purchaseUnitPrice?: number
     depot?:Depot
-    famille?: string
+    // famille?: string
 
 
     }
