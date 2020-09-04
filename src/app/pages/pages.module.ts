@@ -28,6 +28,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     NbIconModule,
     NbButtonModule,
     NgxEchartsModule,
+    NbDatepickerModule,
   ],
   declarations: [
     PagesComponent,

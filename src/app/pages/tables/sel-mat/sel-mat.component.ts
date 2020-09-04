@@ -38,6 +38,7 @@ famId: number = 0;
 fams: Famille[]=[];
 
 
+
 // mt: MatierePremiere;
 
   onKey(event: any) { 
@@ -74,7 +75,7 @@ constructor(private matService: MatpremService,
       );
     }
     getAllFam(){
-      this.familleService.getFamilleAll().subscribe(data=>{this.fams=data;
+      this.familleService.retreiveAllFam().subscribe(data=>{this.fams=data;
                                                       console.log(this.fams)}
       );
     }
@@ -133,13 +134,13 @@ constructor(private matService: MatpremService,
                     this.getMat();}
         )                 
       }
-      setMatIdFamSelec(){
-        let id: number =this.famId;
-        let matClone : MatierePremiere =this.ctt;
-        this.matService.assignFamille(matClone,id).subscribe(
-              data=>{matClone =data 
-                    this.getMat()}
-        )      }
+      // setMatIdFamSelec(){
+      //   let id: number =this.famId;
+      //   let matClone : MatierePremiere =this.ctt;
+      //   this.matService.assignFamille(matClone,id).subscribe(
+      //         data=>{matClone =data 
+      //               this.getMat()}
+      //   )      }
         // changeDep($event){
 
         //   console.log("depot change it"+ $event)

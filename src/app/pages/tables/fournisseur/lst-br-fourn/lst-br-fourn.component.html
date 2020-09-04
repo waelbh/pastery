@@ -1,0 +1,23 @@
+<div><nb-card>
+    <button (click)="onBack()" status="primary" nbButton class="retour" > Retour</button>
+</nb-card>
+</div>
+<div class="accordions-container row">
+    <div class="accordion-container col-md-12 col-lg-6 col-xxxl-6">
+      <nb-card>
+        <nb-card-header><h5>Liste de Bon de Receptions</h5></nb-card-header>
+      </nb-card>
+  
+      <nb-accordion>
+        <nb-accordion-item #item *ngFor="let br of Brs">
+
+          <nb-accordion-item-header>
+            <h6>N°:{{br.numBonRecep}}</h6>
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+           <a>Date :<span>{{br.dateBr}}</span></a>
+           &nbsp;<a>;Montant total :{{br.montTotTtc}}&nbsp;DNT</a>
+          </nb-accordion-item-body>
+
+        </nb-accordion-item>
+

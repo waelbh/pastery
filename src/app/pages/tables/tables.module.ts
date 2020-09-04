@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule, NbLayoutModule, NbSelectComponent, NbSelectModule } from '@nebular/theme';
+import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule, NbLayoutModule, NbSelectComponent, NbSelectModule, NbListModule, NbAccordionModule, NbDatepickerModule, NbStepperModule, NbLayoutColumnComponent } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { TablesRoutingModule, routedComponents } from './tables-routing.module';
 import { FsIconComponent } from './tree-grid/tree-grid.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DepotComponent } from './depot/depot.component';
-
-
-
+import { CustomDatePipe } from '../../custom.datepipe';
 
 @NgModule({
   imports: [
@@ -23,12 +20,18 @@ import { DepotComponent } from './depot/depot.component';
     NbLayoutModule,
     NbSelectModule,
     ThemeModule,
+    NbListModule,
+    NbStepperModule,
+    NbAccordionModule,
     TablesRoutingModule,
     Ng2SmartTableModule,
+    NbDatepickerModule,
   ],
   declarations: [
     ...routedComponents,
     FsIconComponent,
+    CustomDatePipe
+    
   
   ],
 })

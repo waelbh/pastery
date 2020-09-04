@@ -131,13 +131,13 @@ export class LtMatPrComponent {
                 
                 }
               },
-              "famille.name":{
-                title:'Famille',
-                valuePrepareFunction:(cell,row)=>{
-                  return row.famille?.name;
-                }
+              // "famille.name":{
+              //   title:'Famille',
+              //   valuePrepareFunction:(cell,row)=>{
+              //     return row.famille?.name;
+              //   }
 
-              }
+            // }
           
                   
         },
@@ -158,7 +158,7 @@ export class LtMatPrComponent {
   mt : MatierePremiere = new MatierePremiere() ;
   submitted =false;
   depot: Depot;
-  famille:Famille;
+  // famille:Famille;
   depotName 
 
  
