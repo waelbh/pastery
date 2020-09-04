@@ -23,9 +23,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Gestion Ventes',
     icon: 'grid-outline',
     children: [
+      // {
+      //   title: 'Bon de commande',
+      //   link: '/pages/ventes/bon-commande',
+      // },
       {
-        title: 'Bon de commande',
-        link: '/pages/ventes/bon-commande',
+        title: 'Operation Vente',
+        link: '/pages/ventes/famille',
+
       },
       {
         title: 'Clients',
@@ -34,7 +39,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Factures',
         link:'/pages/ventes/factures'
-      }
+      },
+      {title:'Bon Commande', link:'/pages/ventes/bon-commande'}
     ],
   },
   {

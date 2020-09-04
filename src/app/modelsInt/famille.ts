@@ -8,10 +8,12 @@ export interface IFamille{
   
 }
 
-export class Famille implements IFamille{
-    id: number;
+export class Famille{
+    id?: number;
     name?: string;
     details?:string;
     description?:string;
+    imageUrl? : string;
+    nbrProd?:number;
 
 }

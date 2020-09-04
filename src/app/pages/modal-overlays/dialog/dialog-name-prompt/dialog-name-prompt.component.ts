@@ -8,13 +8,13 @@ import { NbDialogRef } from '@nebular/theme';
 })
 export class DialogNamePromptComponent {
 
-  constructor(protected ref: NbDialogRef<DialogNamePromptComponent>) {}
+  constructor(protected ref: NbDialogRef<any>) {}
 
   cancel() {
     this.ref.close();
   }
 
-  submit(name) {
-    this.ref.close(name);
+  submit(qty) {
+    this.ref.close(qty);
   }
 }

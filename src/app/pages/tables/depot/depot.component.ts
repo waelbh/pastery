@@ -57,6 +57,8 @@ export class DepotComponent implements OnInit {
       actualcharge:{
         title:"Charge Actuelle",
         type:"number",
+        editable:false,
+        addable:false,
 
       },
 

@@ -127,11 +127,12 @@ Selectedfourn: Fournisseur={}
     //     var deletSecondQuoate = deletFirstQuoate.substring(0, deletFirstQuoate.length - 0);
     //     link.href = '/documents/' + deletSecondQuoate + '.pdf';
     //     link.download = deletSecondQuoate + '.pdf';
+
     //     link.click();
     // });
-    debugger;
+    // debugger;
     this.fourService.retreiveAllFour().subscribe(data=> {
-      debugger;
+      // debugger;
       this.load=true;
       this.fourns=data;
       console.log("liste fourns select",this.fourns) 
@@ -152,12 +153,13 @@ retreiveAllMatPrem(){
   })
 }
 
-retreiveAllMatPremFromFour(){
-  console.log("L'id de fournisseur pour la nouvelle methode est ",this.frId)
-  this.fourService.getFourMatListByFourid(this.br.id).subscribe(data=>{
-    this.lstmat =data; console.log("La list de matiere est :", this.lstmat)
-  })
-}
+// retreiveAllMatPremFromFour(){
+//   console.log("L'id de fournisseur pour la nouvelle methode est ",this.frId)
+//   this.fourService.getFourMatListByFourid(this.br.id).subscribe(data=>{
+//     this.lstmat =data; 
+//     console.log("La list de matiere est :", this.lstmat)
+//   })
+// }
 
 lbrComp: LigneBonReception={}
 lstBr: LigneBonReception[]=[]

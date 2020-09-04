@@ -24,6 +24,7 @@ import {
 } from '@nebular/theme';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CustomDatePipe } from './custom.datepipe';
+import { RemovewhitespacesPipe } from './modelsInt/removeWhiteSpace';
 
 @NgModule({
   declarations: [AppComponent],

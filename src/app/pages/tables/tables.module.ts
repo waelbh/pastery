@@ -7,6 +7,7 @@ import { TablesRoutingModule, routedComponents } from './tables-routing.module';
 import { FsIconComponent } from './tree-grid/tree-grid.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CustomDatePipe } from '../../custom.datepipe';
+import { BonDetailComponent } from './fournisseur/lst-br-fourn/bon-detail/bon-detail.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { CustomDatePipe } from '../../custom.datepipe';
   declarations: [
     ...routedComponents,
     FsIconComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    BonDetailComponent
     
   
   ],

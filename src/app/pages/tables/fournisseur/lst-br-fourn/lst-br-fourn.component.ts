@@ -3,6 +3,7 @@ import { FournisseurService } from '../../../../stockServices/fournisseur.servic
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { BonReception } from '../../../../modelsInt/bonReception';
+import { BonReceptionService } from '../../../../stockServices/bon-reception.service';
 
 @Component({
   selector: 'ngx-lst-br-fourn',
@@ -13,6 +14,9 @@ export class LstBrFournComponent implements OnInit {
 sub:any;
 id:number;
 Brs: BonReception[]=[]
+t:boolean =false;
+idbr:number=0
+bonrecep:BonReception={}
   constructor(private fourService: FournisseurService,
               private route :ActivatedRoute,
               private _location : Location) { }
@@ -36,6 +40,13 @@ getAllBrFromFr(){
     ()=>console.log(" list matiere loaded")
   );
 
+}
+details(br){
+  console.log(br.numBonRecep)
+  this.t=true;
+  this.bonrecep= br
+  console.log("salut")
+  console.log(" l'id a envoyer est:" +this.bonrecep)
 }
 
 }

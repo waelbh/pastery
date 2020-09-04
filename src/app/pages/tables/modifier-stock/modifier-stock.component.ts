@@ -25,8 +25,9 @@ interface FSEntry {
 })
 export class ModifierStockComponent implements OnInit{
   customColumn ='Id';
-  defaultColumns = ['Nom','Unite', 'Stock'];
-  allColumns = [ this.customColumn, ...this.defaultColumns ];
+  defaultColumns = ['Nom','Unite', 'Stock','Depot'];
+  // allColumns = [ this.customColumn, ...this.defaultColumns ];
+  allColumns = this.defaultColumns ;
 //   dataSource=[{"id":23,"name":"ttt200","unit":"UNIT","quantity":null,"stockLimit":100.00,"purchaseUnitPrice":100.00,"depot":null,"famille":null},
 //   {"id":15,"name":"Amande","unit":"KG","quantity":4.99,"stockLimit":5.00,"purchaseUnitPrice":42.00,"depot":null,"famille":null}
 // ];

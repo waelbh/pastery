@@ -7,7 +7,7 @@
 
        <div class="row show-grid" *ngFor="let brc of filtredBr">
           <div class="col-8 col-12 lien" >
-                   <div class=name><span style="font-weight:bolder;">N°Br:</span><a (click)="onclicked($event,brc.id)">{{brc.numBonRecep}}</a></div>
+                   <div class=name><span style="font-weight:bolder;">N°Br:</span><a (click)="onclicked($event,brc.id)">{{brc.numBonRecep}}; de {{brc.fournisseur?.name}}</a></div>
         </div>
         </div>
         <div class="col-md-12 col-lg-12 col-xxxl-6">              

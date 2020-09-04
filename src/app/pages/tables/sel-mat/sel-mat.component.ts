@@ -22,7 +22,7 @@ contenu= {"id":5,"name":"levure bouanger","unit":"KG","quantity":2.00,"stockLimi
 ctt: MatierePremiere ={};
 ct:any
 mat;
-depotId: number;
+depotId: number=0;
 dp:Depot;
 dpret: Depot= {};
 dpts:Depot[];
@@ -56,7 +56,10 @@ constructor(private matService: MatpremService,
   this.Id =this.route.snapshot.params['id']
   console.log(this.Id);
   this.getMat();
-  this.getAllDepot();
+  // this.getAllDepot();
+  this.depotService.getDepotAll().subscribe(data=>{this.dpts=data;
+    console.log(this.dpts)}
+);
   this.getAllFam();
   this.getDepotIndex();
 

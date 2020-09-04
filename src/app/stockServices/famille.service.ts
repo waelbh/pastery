@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Famille } from '../modelsInt/famille';
 import { identifierModuleUrl } from '@angular/compiler';
+import { Produit } from '../modelsInt/Produit';
 
 
 const httpOptions = { 
@@ -16,7 +17,7 @@ const httpOptions = {
 })
 export class FamilleService {
      Url1=" http://localhost:8080/api/v1/familles";
-     Url2=" http://localhost:8080/api/v1/famillefamille";
+     Url2=" http://localhost:8080/api/v1/famille";
     //@GetMapping("/familles")
     //@GetMapping("/famille/{id}")
     //@PostMapping("/famille")
@@ -40,6 +41,10 @@ export class FamilleService {
     }
     removeFam(id:number):Observable<any>{
       return this.http.delete(this.Url2+'/'+id,{responseType:'text'});
+    }
+
+    retreiveAllProdFami(id : number): Observable<Produit[]>{
+      return this.http.get<Produit[]>('http://localhost:8080/api/v1/fam/produit/'+id);
     }
 
      

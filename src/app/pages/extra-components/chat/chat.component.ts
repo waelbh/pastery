@@ -34,6 +34,7 @@ export class ChatComponent {
       user: {
         name: 'Jonh Doe',
         avatar: 'https://i.gifer.com/no.gif',
+    
       },
     });
     const botReply = this.chatService.reply(event.message);

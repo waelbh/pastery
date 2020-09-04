@@ -22,10 +22,11 @@
                         <ng-container>                           
                             <thead *ngIf="matPrems && matPrems.length">
                                 <tr *ngFor="let data of filteredMats">
-                                    <td id="first"> {{data?.id}}</td>
+                                    <!-- <td id="first"> {{data?.id}}</td> -->
                                     <td><a [routerLink]="['sel-mat/', data.id]">{{data?.name}}</a></td>
                                     <td>{{data?.unit}}</td>
                                     <td>{{data?.quantity}}</td>
+                                    <td>{{data?.depot?.name}}</td>
                                 </tr>
                             </thead>
                         
