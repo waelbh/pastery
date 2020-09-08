@@ -25,7 +25,8 @@
             </td>
             <td [hidden]="!y" > 
                 <form>
-                    <nb-select  #selItem [(selected)]="SelTypePay" placeholder="type Payement" default="ESPECE">
+                    <!-- #selItem -->
+                    <nb-select   [(selected)]="SelTypePay" placeholder="type Payement" default="ESPECE">
                         <nb-option *ngFor="let item of lstTypePay"   value={{item}}>{{item}}</nb-option>
                     </nb-select>
                     <input placeholder=" tapez le numero de Téléphone" type="text"  #phone>

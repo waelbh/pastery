@@ -105,7 +105,7 @@ depots
 
   onDeleteConfirm($event){  
    let id : number =$event.data['id']
-   if(window.confirm('Etes vous sure de vouloir supprimer ce depot?')){
+   if(window.confirm('Etes vous sure de vouloir supprimer cette famille?')){
      this.depServ.removeDepot(id).subscribe(res=>{
        $event.confirm.resolve($event.source.data);
      })} 

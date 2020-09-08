@@ -33,7 +33,7 @@ export class FamilleService {
       return this.http.get<Famille>(this.Url2+'/'+id);
     }
     createFam(fam:Famille):Observable<Famille>{
-      return this.http.post<Famille>(this.Url1,fam);
+      return this.http.post<Famille>(this.Url2,fam);
     }
     editFam(fam:Famille,id:number):Observable<Famille>{
       let body = JSON.stringify(fam);

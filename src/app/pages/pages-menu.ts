@@ -14,8 +14,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/productions/ordre',
       },
       {
-        title: 'Recettes',
-        link:'/pages/productions/recette'
+        title: 'Famille',
+        link:'/pages/productions/famille'
       }
     ],
   },

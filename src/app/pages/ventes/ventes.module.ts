@@ -21,6 +21,7 @@ import { FenetrQtyComponent } from './famille/lst-prd-fam/fenetr-qty/fenetr-qty.
 import { FactureComponent } from './famille/facture-creat/facture.component';
 import { FamillePrinComponent } from './famille-prin/famille-prin.component';
 import { FactDetailComponent } from './factures/fact-detail/fact-detail.component';
+import { BcDetailsComponent } from './bon-commande/bc-details/bc-details.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FactDetailComponent } from './factures/fact-detail/fact-detail.componen
                   FenetrQtyComponent,
                   FactureComponent,
                   FamillePrinComponent,
-                  FactDetailComponent],
+                  FactDetailComponent,
+                  BcDetailsComponent],
   imports: [
     CommonModule,
     VentesRoutingModule,
