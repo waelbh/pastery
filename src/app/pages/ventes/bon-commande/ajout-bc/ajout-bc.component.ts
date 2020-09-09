@@ -5,6 +5,7 @@ import { BonCommande, LigneBonCommande } from '../../../../modelsInt/fact-clt-bc
 import { Router } from '@angular/router';
 import { ProduitService } from '../../../../venteSrvices/produit.service';
 import { LigneBonReception } from '../../../../modelsInt/ligneBonReception';
+import { NbIconLibraries } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-ajout-bc',
@@ -19,10 +20,20 @@ prId:number=0
 lc: LigneBonCommande={}
 lstLign: LigneBonCommande[]=[]
 
+evaIcons = [];
+  chevronR = "chevron-right";
+  chevronL = "chevron-left";
+
 
 
   constructor(private route: Router,
-              private prodServivce: ProduitService) { }
+              private prodServivce: ProduitService,
+              iconsLibrary: NbIconLibraries) { 
+                this.evaIcons = Array.from(iconsLibrary.getPack('eva').icons.keys())
+    .filter(icon => icon.indexOf('outline') === -1);
+
+    iconsLibrary.registerFontPack('ion', { iconClassPrefix: 'ion' });
+              }
 
   ngOnInit(): void {
     this.retreiveAllProduit();
@@ -38,6 +49,15 @@ lstLign: LigneBonCommande[]=[]
       this.prods=data;
       console.log("la liste de produits: ", this.prods)
     })
+  }
+
+
+  removeLineHandler(){
+    console.log("chveron de suppression cliquer")
+  }
+
+  addNewLineHandler(){
+    console.log("ajout de ligne activer")
   }
 
   

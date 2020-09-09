@@ -11,26 +11,58 @@
                     <div class="col-lg-12">
                         <nb-card>
                           <nb-card-body>
-                              <form #brForm="ngForm"    novalidate>                
+                              <form #brForm="ngForm"    novalidate>    
+                                  
+                                <div class="row show-grid">
+                                    <div class="col-md-6 offset-md-3">
+                                      <label for="ligneRecLabel" class="label" >ligne Bon commande </label>
+                                      <button nbButton ghost status="danger" (click)="removeLineHandler()">
+                                        <nb-icon [icon]="chevronL" pack="eva"></nb-icon>
+                                      </button>
+                                      <button nbButton ghost status="primary">
+                                        {{ lstLign.length }}
+                                      </button>
+                                      <button nbButton ghost status="success" (click)="addNewLineHandler()">
+                                        <nb-icon [icon]="chevronR" pack="eva"></nb-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                        
+                                  <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>Matiere premier</th>
+                                        <th>consommation</th>
+                                      </tr>
+                                    </thead>
+                        
+                                    <tbody>
+                                      <tr *ngFor="let lignRec of  lstLign; let index = index; ">
+                                       <!-- <ngx-ligne-recette [ligneRecette]="lignRec" [index]="index" ></ngx-ligne-recette> -->
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                        
+                                  <button nbButton nbStepperNext class="float-right">Finish</button>
+                                <!-- </form> -->
+
+
+
+
+
+
+
+
                                 <br/>
-                                <!-- *ngIf="prods.length !== 0 "-->
+                                
                                 <nb-select  class="form-group" placeholder="Selectionnez un Produit" name="prd" [(selected)]="prId" >
                                     <nb-option  *ngFor="let pr of prods "   [value]="pr?.id"> {{pr.name}} </nb-option>
                                 </nb-select>
-                                <!-- <nb-select placeholder="Select Showcase" [(selected)]="selectedItem"> -->
-                                    <!-- <nb-option value="">Option empty</nb-option> -->
+                                
                                 <br/>
                                       <span >*</span>
                                       <input type="number" name="quantity" nbInput fullWidth placeholder="Quantité" [(ngModel)]="lc.quantity" required>
-                                      <!-- <label for="numBonRecep"><span >*</span>Numéro bon de réception:</label> -->
-                                      <label for="dateSouhaite"><span >*</span> Date Souhaité: </label>
-                                      <input type="date" name="dateSouhaite" nbInput fullWidth placeholder="Date Souhaité" [(ngModel)]="bc.dateSouhaite" required>  
-                                          <span >*</span>
-                                          <input type="number" name="avance" nbInput fullWidth placeholder="Avance" [(ngModel)]="bc.Avance" required>
-                                          <span >*</span>
-                                          
-                                          <span >*</span>
-                                      <input type="text" name="InfoSup" nbInput fullWidth placeholder="Information supplemenetaire" [(ngModel)]="bc.infoSupp">  
                                    </form>    
                                  
                          </nb-card-body>
@@ -40,73 +72,28 @@
                    
                     <button nbButton nbStepperNext  #buttonstate [disabled]="!brForm.valid" status="primary" class="edit" (click)="onSubmit()" >valider</button>
                 </nb-step>
-                    <!-- <nb-step [label]="labelTwo">
+                    <nb-step [label]="labelTwo">
                         <ng-template #labelTwo>Etape2</ng-template>
                         <h3>Etape2 </h3>
                        
-                            <div class="col-lg-12">
-                                <nb-card>
-                                 
-                                  <nb-card-body>
-                                      <form #brForm="ngForm"    novalidate>  
-                                          <table>
-                                              <thead>
-                                                  <tr>
-                                                  <th>Matiere</th>
-                                                  <th>Quantite</th>
-                                                  <th>Total</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <select placeholder="Selectionnez Matiére" name="mats"  [(ngModel)]="matId">
-                                                                <option fullWidth *ngFor="let mat of lstmat"   [value]="mat?.id">{{mat.name}}</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="ligneBr" nbInput fullWidth placeholder="quantite" [(ngModel)]="lbr.quantity" required>
-                                                        </td>
-                                                        
-                                                        <td>
-                                                            <button nbButton nbStepperNext (click)="OnAjoutClick()" >Ajouter</button>
-                                                        </td>
-                                                    </tr>                                                    
-                                              </tbody>
-                                          </table>
-                                          <div> 
-                                          <table>
-                                              <thead>
-                                                  <div class="etetBr">
-                                                      <tr>
-                                                            <td class="leftside">Date :{{br.dateBr}}</td>
-                                                            <td class="rightside"> N° Br: {{br.numBonRecep}}</td>
-                                                            <td class="middle"> Fournisseur : {{br?.fournisseur?.name}}</td>
-                                                      </tr>
-                                                   </div>
-                                                  <tr>
-                                                      <td>Matiére Première</td>
-                                                      <td>Quantité</td>
-                                                      <td>Total ht</td>
-                                                  </tr>
-                                              </thead>
-                                              <tbody >
-                                                
-                                                  <tr *ngFor="let lg of lstBr">
-                                                    <td> <input type="text" name="matname" nbInput fullWidth  value="{{lg.matierepremier.name}}"> </td>
-                                                    <td><input type="text" name="qantity" nbInput fullWidth  value="{{lg.quantity}}"></td>
-                                                    <td><input type="text" name="total" nbInput fullWidth  value="{{lg.total}}"></td>
-                                                  </tr>                
-                                              </tbody>
-                                          </table>  
-                                          </div>
-                                        </form> 
-                                    </nb-card-body>
-                              </nb-card>
-                            </div>
+                      <div class="col-lg-12">
+                           <nb-card>                                 
+                                 <nb-card-body>                                   
+                                        <form #brForm="ngForm"    novalidate>                                                              
+                                                <label for="dateSouhaite"><span >*</span> Date Souhaité: </label>
+                                                <input type="date" name="dateSouhaite" nbInput fullWidth placeholder="Date Souhaité" [(ngModel)]="bc.dateSouhaite" required>  
+                                                    <span >*</span>
+                                                    <input type="number" name="avance" nbInput fullWidth placeholder="Avance" [(ngModel)]="bc.Avance" required>                                                
+                                                    
+                                                    <span >*</span>
+                                                <input type="text" name="InfoSup" nbInput fullWidth placeholder="Information supplemenetaire" [(ngModel)]="bc.infoSupp">  
+                                             </form>  
+                                 </nb-card-body>
+                            </nb-card>
+                         </div>
 
-                            <button nbButton nbStepperNext (click)="backClick()">valider</button>
-                    </nb-step> -->
+                            <!-- <button nbButton nbStepperNext (click)="backClick()">valider</button> -->
+                    </nb-step>
           </nb-stepper>
         </nb-card-body>
     </nb-card>

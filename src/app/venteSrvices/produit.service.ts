@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Produit } from '../modelsInt/Produit';
+import { Produit, CompletProduit } from '../modelsInt/Produit';
 import { id } from '@swimlane/ngx-charts';
+import { Recette } from '../modelsInt/recette';
+import { LigneRecette } from '../modelsInt/ligne-recette';
 
 
 const httpOptions= {
@@ -18,10 +20,17 @@ urlBase: string ='http://localhost:8080/api/v1/';
 urlSec1: string='produits'
 urlSec2: string='produit'
 
+url3: string="http://localhost:8080/api/v1/produit/monocreation/"
+
+// /produit/monocreation/{idf}
 
   
   constructor(private http: HttpClient) { }
 
+  
+  createProduitComplete(idf:number,compPrd: CompletProduit  ): Observable<Produit>{
+    return this.http.post<Produit>(this.url3+idf, compPrd);  
+    }
 
   retreiveAllProduit():Observable<Produit[]>{
     return this.http.get<Produit[]>(this.urlBase+this.urlSec1);

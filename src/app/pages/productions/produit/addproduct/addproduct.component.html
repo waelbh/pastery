@@ -149,9 +149,12 @@
               <button nbButton ghost status="danger" (click)="removeLineHandler()">
                 <nb-icon [icon]="chevronL" pack="eva"></nb-icon>
               </button>
+
               <button nbButton ghost status="primary">
                 {{ recette.lignesRecettes.length }}
               </button>
+
+
               <button nbButton ghost status="success" (click)="addNewLineHandler()">
                 <nb-icon [icon]="chevronR" pack="eva"></nb-icon>
               </button>
