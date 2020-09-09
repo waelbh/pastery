@@ -17,7 +17,6 @@ export class OrderProductionComponent implements OnInit {
   btnEndStatus: NbComponentStatus ='danger';
   btnEndShape: NbComponentShape ='round';
   btnEndSize: NbComponentSize = 'small';
-  showHistory:boolean = false;
 orderProduction :any[]=[
   {
       "id": 2,
@@ -162,12 +161,7 @@ historyOrderProduction : any[]=[
 
   ngOnInit(): void {
   }
-  openHistoryHandler(){
-    this.showHistory = true
-  }
-  closeHistoryHandler(){
-    this.showHistory = false
-  }
+
   startOrder(orderP){
     this.orderProduction.map(op => {
       op.id === orderP.id ? op.debutProd = true : null ;

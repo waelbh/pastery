@@ -1,7 +1,7 @@
 <nb-card>
   <nb-card-header>
     <h1 class="text-info text-center">
-      ajouter des nouvelles produits
+      {{formTitle}}
     </h1></nb-card-header
   >
   <nb-card-body>
@@ -77,11 +77,9 @@
                   #famille="ngModel"
                   required
                 >
-                  <option
-                    *ngFor="let famille of familles"
-                    [ngValue]="famille"
-                    >{{ famille.name }}</option
-                  >
+                  <option *ngFor="let famille of familles" [ngValue]="famille">
+                    {{ famille.name }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -97,9 +95,9 @@
                   #unit="ngModel"
                   required
                 >
-                  <option *ngFor="let unit of units" [ngValue]="unit.value">{{
-                    unit.label
-                  }}</option>
+                  <option *ngFor="let unit of units" [ngValue]="unit.value">
+                    {{ unit.label }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -146,37 +144,76 @@
               <label for="ligneRecLabel" class="label"
                 >les Lignes Recette
               </label>
-              <button nbButton ghost status="danger" (click)="removeLineHandler()">
+              <button
+                nbButton
+                ghost
+                status="danger"
+                (click)="removeLineHandler()"
+              >
                 <nb-icon [icon]="chevronL" pack="eva"></nb-icon>
               </button>
 
               <button nbButton ghost status="primary">
-                {{ recette.lignesRecettes.length }}
+                {{ lignesRecettes.length }}
               </button>
-
-
-              <button nbButton ghost status="success" (click)="addNewLineHandler()">
+              <button
+                nbButton
+                ghost
+                status="success"
+                (click)="addNewLineHandler()"
+              >
                 <nb-icon [icon]="chevronR" pack="eva"></nb-icon>
               </button>
             </div>
           </div>
+          <form [formGroup]="ligneRecetteForm">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Matiere premier</th>
+                  <th>consommation</th>
+                </tr>
+              </thead>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Matiere premier</th>
-                <th>consommation</th>
-              </tr>
-            </thead>
+              <tbody formArrayName="lignesRecettes">
+                <tr
+                  *ngFor="
+                    let lignRec of lignesRecettes.controls;
+                    let index = index
+                  "
+                  [formGroupName]="index"
+                >
+                  <td>
+                    {{ index + 1 }}
+                  </td>
+                  <td>
+                    <select
+                      class="form-control"
+                      formControlName="matierepremier"
+                    >
+                      <option
+                        *ngFor="let matPrem of matierePremier"
+                        [ngValue]="matPrem"
+                      >
+                        {{ matPrem.name }} ({{ matPrem.unit }})
+                      </option>
+                    </select>
+                  </td>
 
-            <tbody>
-              <tr *ngFor="let lignRec of recette.lignesRecettes; let index = index; ">
-               <ngx-ligne-recette [ligneRecette]="lignRec" [index]="index" ></ngx-ligne-recette>
-              </tr>
-            </tbody>
-          </table>
-
+                  <td>
+                    <input
+                      type="number"
+                      placeholder="consommation"
+                      nbInput
+                      class="form-control"
+                      formControlName="consommation"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
           <button nbButton nbStepperNext class="float-right">Finish</button>
         </form>
       </nb-step>

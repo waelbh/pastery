@@ -138,6 +138,8 @@ export class ProduitComponent implements OnInit {
     "showRecette":false
 }
 ];
+  produitToEdit:any;
+ 
   statuses: NbComponentStatus ='info';
   ajouterProduitBtnLabel:String = 'Ajouter Produit';
   btnComanderStatus: NbComponentStatus ='success';
@@ -159,16 +161,24 @@ export class ProduitComponent implements OnInit {
     });
   }
   openFormHandler(){
-  
-    this.openProductForm =! this.openProductForm;
-    if(this.openProductForm){
+    this.produitToEdit = {status:'add'};
+    if(!this.openProductForm){
+      this.openProductForm = true
       this.statuses = 'danger';
-      this.ajouterProduitBtnLabel = "Fermer l'ajout"
+      this.ajouterProduitBtnLabel = "Fermer l'ajout" 
     }else {
       this.statuses = 'info';
       this.ajouterProduitBtnLabel = "Ajouter Produit"
+      this.openProductForm = false
     }
-    
+  }
+  editerAction(prod){
+ this.produitToEdit = {...prod,status:'edit'};
+    this.openProductForm = true
+    this.statuses = 'danger';
+    this.ajouterProduitBtnLabel = "Fermer la configuration" 
+  
+ 
   }
   ngOnInit(): void {
   }

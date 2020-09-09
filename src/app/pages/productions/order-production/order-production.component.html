@@ -1,102 +1,93 @@
-<nb-card *ngIf='showHistory'>
-    <nb-card-body>
-  <div class="row show-grid">
-    <div class="col-md-9">
-      <h1 class="text-info">Historique des ordres( {{ historyOrderProduction.length }} )</h1>
-    </div>
-    <div class="col-md-3 align-self-center float-right">
-        <button nbButton hero [status]="closeStatus" (click)="closeHistoryHandler()">
-          Close
-        </button>
-      </div>
-  </div>
-
-
-<div class="row show-grid">
-    <div class="col-md-4" *ngFor="let orderP of historyOrderProduction">
-      <nb-card size="medium">
-        <div class="picture" style.background-image="url({{ orderP.recette.produit.photo }})"></div>
-  
-        <div class="details">
-          <div class="text-center"><strong>{{ orderP.recette.produit.name }}</strong></div>
-          <div class="row show-grid">
-            <div class="col-auto">
-              <div class="text-info"><strong>Quantité O.P</strong></div>
-              <div class=" text-primary">{{ orderP.quantity }}</div>
-            </div>
-          </div>
-        </div>
-  
-     
-      </nb-card>
-    </div>
-  </div>
-    </nb-card-body>
-</nb-card>
-
-
-
-
-
-
-
-
-
-<nb-card>
-    <nb-card-body>
-  <div class="row show-grid">
-    <div class="col-md-9">
-      <h1 class="text-info">Les ordres de production ( {{ orderProduction.length }} )</h1>
-    </div>
-    <div class="col-md-3 align-self-center float-right">
-        <button nbButton hero [status]="statuses" (click)="openHistoryHandler()" *ngIf='!showHistory'>
-          Historiques
-        </button>
-      </div>
-  </div>
-
-
-<div class="row show-grid">
-    <div class="col-md-4" *ngFor="let orderP of orderProduction">
-      <nb-card size="medium">
-        <div class="picture" style.background-image="url({{ orderP.recette.produit.photo }})"></div>
-  
-        <div class="details">
-          <div class="text-center"><strong>{{ orderP.recette.produit.name }}</strong></div>
-          <div class="row show-grid">
-            <div class="col-auto">
-              <div class="text-info"><strong>Quantité O.P</strong></div>
-              <div class=" text-primary">{{ orderP.quantity }}</div>
-            </div>
-          </div>
-        </div>
-  
-        <nb-card-footer>
-            <button
-          nbButton
-          [status]="btnStartStatus"
-          [shape]="btnStartShape"
-          [size]="btnStartSize"
-          ghost
-          (click)="startOrder(orderP)"
-          *ngIf = "!orderP.debutProd && !orderP.prodFinish"
-        >
-          Débuter
-        </button>
-        <button
-        nbButton
-        [status]="btnEndStatus"
-        [shape]="btnEndShape"
-        [size]="btnEndSize"
-        ghost
-        (click)="finishOrder(orderP)"
-        *ngIf = "orderP.debutProd && !orderP.prodFinish"
+<div class="lists row">
+  <div class="col-md-12 col-lg-6 col-xxxl-6">
+    <nb-card class="list-card">
+      <nb-card-header
+        ><h1>
+          <strong class="text-info"
+            >Les ordres de production (
+            {{ historyOrderProduction.length }} )</strong
+          >
+        </h1></nb-card-header
       >
-        Terminer
-      </button>
-        </nb-card-footer>
-      </nb-card>
-    </div>
+      <nb-card-body>
+        <nb-list>
+          <nb-list-item
+            class="list-item"
+            *ngFor="let orderP of orderProduction"
+          >
+            <strong class="text-info">{{ orderP.recette.produit.name }}</strong>
+
+            <div>
+              <strong>Quantité : {{ orderP.quantity }}</strong>
+            </div>
+            <div>
+              <strong
+                >débuter :
+                {{ orderP.dateLancement | date: "M/d/yy h:mm a" }}</strong
+              >
+            </div>
+            <div>
+              <button
+                nbButton
+                [status]="btnStartStatus"
+                [shape]="btnStartShape"
+                [size]="btnStartSize"
+                ghost
+                (click)="startOrder(orderP)"
+                *ngIf="!orderP.debutProd && !orderP.prodFinish"
+              >
+                Débuter
+              </button>
+              <button
+                nbButton
+                [status]="btnEndStatus"
+                [shape]="btnEndShape"
+                [size]="btnEndSize"
+                ghost
+                (click)="finishOrder(orderP)"
+                *ngIf="orderP.debutProd && !orderP.prodFinish"
+              >
+                Terminer
+              </button>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      
+      </nb-card-body>
+      <nb-card-footer>
+        dsfsqdf
+      </nb-card-footer>
+    </nb-card>
   </div>
-    </nb-card-body>
-</nb-card>
+  <div class="col-md-12 col-lg-6 col-xxxl-6">
+    <nb-card class="list-card">
+      <nb-card-header
+        ><h1>
+          <strong class="text-info"
+            >Historique des ordres (
+            {{ historyOrderProduction.length }} )</strong
+          >
+        </h1></nb-card-header
+      >
+      <nb-card-body>
+        <nb-list>
+          <nb-list-item
+            class="list-item"
+            *ngFor="let orderP of historyOrderProduction"
+          >
+            <strong class="text-info">{{ orderP.recette.produit.name }}</strong>
+            <div >
+              <strong>Quantité : {{ orderP.quantity }}</strong>
+            </div>
+            <div>
+              <strong
+                >terminer :
+                {{ orderP.sortieProd | date: "M/d/yy h:mm a" }}</strong
+              >
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
