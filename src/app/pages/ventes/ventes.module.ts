@@ -22,6 +22,7 @@ import { FactureComponent } from './famille/facture-creat/facture.component';
 import { FamillePrinComponent } from './famille-prin/famille-prin.component';
 import { FactDetailComponent } from './factures/fact-detail/fact-detail.component';
 import { BcDetailsComponent } from './bon-commande/bc-details/bc-details.component';
+import { AjoutBcComponent } from './bon-commande/ajout-bc/ajout-bc.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { BcDetailsComponent } from './bon-commande/bc-details/bc-details.compone
                   FactureComponent,
                   FamillePrinComponent,
                   FactDetailComponent,
-                  BcDetailsComponent],
+                  BcDetailsComponent,
+                  AjoutBcComponent],
   imports: [
     CommonModule,
     VentesRoutingModule,
@@ -49,6 +51,7 @@ import { BcDetailsComponent } from './bon-commande/bc-details/bc-details.compone
     ThemeModule,
     NbListModule,
     NbStepperModule,
+    NbSelectModule,
     Ng2SmartTableModule,
     NbButtonModule,
   NbCheckboxModule,

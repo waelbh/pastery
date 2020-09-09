@@ -31,6 +31,7 @@ url3: string = 'http://localhost:8080/api/v1/ligneBC/prodBCID/';
 url4: string='http://localhost:8080/api/v1/BonCommande/tot/restpay/assClt/'
 // url5: string='http://localhost:8080/api/v1/BonCommande/{idbc}/ListLignBc'
 
+
   constructor(private http: HttpClient) { }
 
   retreiveAllBonCommande():Observable<BonCommande[]>{
@@ -52,6 +53,15 @@ url4: string='http://localhost:8080/api/v1/BonCommande/tot/restpay/assClt/'
   }
   retreiveAllLigneOfBc(idbc:number):Observable<LigneBonCommande[]>{
     return this.http.get<LigneBonCommande[]>(this.url2+idbc+'/ListLignBc')
+  }
+
+  // removeFourn(id:number): Observable<any>{
+  //   return this.http.delete(this.Url3+'/'+id,{'responseType':'text'})
+  //   }
+
+
+  removeBc(id:number): Observable<any>{
+    return this.http.delete(this.url2+'/'+id,{'responseType':'text'})
   }
 
 

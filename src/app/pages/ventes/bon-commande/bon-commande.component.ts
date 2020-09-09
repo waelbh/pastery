@@ -12,6 +12,7 @@ import { runInThisContext } from 'vm';
 export class BonCommandeComponent implements OnInit {
 lstbc: BonCommande[]=[]
 y:boolean =false
+t:boolean=false
 bcmd: BonCommande={}
 
   constructor(private route: Router,
@@ -39,6 +40,10 @@ bcmd: BonCommande={}
 
   onAjouter(){
     console.log(" Ajouter")
+    this.t=true
+  }
+  onRetour2(){
+    this.t=false
   }
   onDetails(bc:BonCommande){
   
@@ -53,6 +58,16 @@ bcmd: BonCommande={}
   }
   onSupprimer(id:number){
     console.log("l'id a supprimer est: ", id)
+    if (window.confirm('Etes vous sure de vouloir supprimer cette Facture?'))
+    this.bonComServ.removeBc(id).subscribe(data=>{
+      this.fetchData();
+
+      
+    })
+  }
+
+  onRetour(){
+    this.y=false;
   }
 
 
