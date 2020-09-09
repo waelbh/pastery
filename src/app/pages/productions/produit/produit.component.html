@@ -1,4 +1,4 @@
-<ngx-addproduct *ngIf="openProductForm"></ngx-addproduct>
+<ngx-addproduct *ngIf="openProductForm" [produitToEdit]="produitToEdit" ></ngx-addproduct>
 
 <nb-card>
   <nb-card-body>
@@ -81,7 +81,7 @@
 
       <nb-card-footer>
         <nb-actions size="medium" fullWidth>
-          <nb-action [ngStyle]="{'cursor': 'pointer'}">
+          <nb-action [ngStyle]="{'cursor': 'pointer'}" (click)="editerAction(prod)">
             <nb-icon class="action-icon" icon="settings-2-outline" ></nb-icon>
             <span>Editer</span>
           </nb-action></nb-actions
