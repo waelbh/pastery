@@ -1,4 +1,7 @@
 import { Famille } from './famille';
+import { LigneRecette } from './ligne-recette';
+import { Recette } from './recette';
+import { MatierePremiere } from './matierePrem';
 
 export class Produit{
     id?: number;
@@ -13,19 +16,30 @@ export class Produit{
     famille? :Famille;
     photo?: any;
 
-
-
-
-
-    // "id": 4,
-    // "name": "Gateau Anniversaire",
-    // "unit": "UNIT",
-    // "quantity": null,
-    // "stockLimit": 10.00,
-    // "percentageMargin": 75,
-    // "unitPrice": 35.00,
-    // "unitPriceValidation": false,
-    // "prodCoast": 8.460,
-    // "photo": null,
-    // "famille": null
 }
+
+    export class  CompletProduit{
+     rc?: Recette;
+     pr?:Produit ;
+     lg?: LigneRecette[];
+    }
+
+    
+    export class LigneRecetMatPre{
+    lg?:LigneRecette ;
+     mat?: MatierePremiere;
+    }
+
+    export class OrdreProduction{
+    id?: number;
+    created?:Date;
+    debutProd?:boolean;
+    stockupdate?: boolean;
+    dateLancement?:Date;
+    prodFinish?:boolean;
+    sortieProd?:Date;
+    tempsPrd?:number;
+    quantity?:number;
+    qtSortieProd?:number;
+    SortiePrevisionnel?:Date;
+    recette?: Recette;}
