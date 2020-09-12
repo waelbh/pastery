@@ -12,9 +12,12 @@
     .list-item{
       display: flex;
       width: 100%;
+      margin: auto;
       justify-content: space-around;
-      .div {
-        flex-grow: 1;
+      align-items: center;
+      
+      .item-values {
+       flex-grow: 1;
       }
     }
   }

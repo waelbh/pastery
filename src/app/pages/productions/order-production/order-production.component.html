@@ -5,7 +5,8 @@
         ><h1>
           <strong class="text-info"
             >Les ordres de production (
-            {{ historyOrderProduction.length }} )</strong
+            {{ orderProduction.slice(0, end).length }} /
+            {{ orderProduction.length }} )</strong
           >
         </h1></nb-card-header
       >
@@ -13,7 +14,7 @@
         <nb-list>
           <nb-list-item
             class="list-item"
-            *ngFor="let orderP of orderProduction"
+            *ngFor="let orderP of orderProduction | slice: 0:end"
           >
             <strong class="text-info">{{ orderP.recette.produit.name }}</strong>
 
@@ -52,34 +53,63 @@
             </div>
           </nb-list-item>
         </nb-list>
-      
       </nb-card-body>
-      <nb-card-footer>
-        dsfsqdf
+      <nb-card-footer
+        style="width: 100%; margin-left: 270px"
+        *ngIf="end <= orderProduction.length"
+      >
+        <button
+          nbButton
+          [status]="btnStartStatus"
+          [shape]="btnStartShape"
+          [size]="btnStartSize"
+          ghost
+          (click)="handleShowMoreBtn('order')"
+        >
+          Afficher plus
+        </button>
       </nb-card-footer>
     </nb-card>
   </div>
   <div class="col-md-12 col-lg-6 col-xxxl-6">
     <nb-card class="list-card">
-      <nb-card-header
-        ><h1>
-          <strong class="text-info"
-            >Historique des ordres (
-            {{ historyOrderProduction.length }} )</strong
+      <nb-card-header class="row">
+        <div class="col-md-9">
+          <h1>
+            <strong class="text-info"
+              >Historique des ordres (
+              {{ historyOrderProduction.slice(0, endHist).length }} /
+              {{ historyOrderProduction.length }} )</strong
+            >
+          </h1>
+        </div>
+        <div class="col-md-3">
+          <button
+            nbButton
+            [status]="btnStartStatus"
+            [shape]="btnStartShape"
+            [size]="btnStartSize"
+            ghost
           >
-        </h1></nb-card-header
-      >
+            Effacer l'historiques
+          </button>
+        </div>
+      </nb-card-header>
       <nb-card-body>
         <nb-list>
           <nb-list-item
             class="list-item"
-            *ngFor="let orderP of historyOrderProduction"
+            *ngFor="let orderP of historyOrderProduction | slice: 0:endHist"
           >
-            <strong class="text-info">{{ orderP.recette.produit.name }}</strong>
-            <div >
+            <div class="item-values">
+              <strong class="text-info">{{
+                orderP.recette.produit.name
+              }}</strong>
+            </div>
+            <div class="item-values">
               <strong>Quantité : {{ orderP.quantity }}</strong>
             </div>
-            <div>
+            <div class="item-values">
               <strong
                 >terminer :
                 {{ orderP.sortieProd | date: "M/d/yy h:mm a" }}</strong
@@ -88,6 +118,22 @@
           </nb-list-item>
         </nb-list>
       </nb-card-body>
+
+      <nb-card-footer
+        style="width: 100%; margin-left: 270px"
+        *ngIf="end <= historyOrderProduction.length"
+      >
+        <button
+          nbButton
+          [status]="btnStartStatus"
+          [shape]="btnStartShape"
+          [size]="btnStartSize"
+          ghost
+          (click)="handleShowMoreBtn('history')"
+        >
+          Afficher plus
+        </button>
+      </nb-card-footer>
     </nb-card>
   </div>
 </div>
