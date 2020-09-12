@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { ProduitService } from '../../../../venteSrvices/produit.service';
 import { LigneBonReception } from '../../../../modelsInt/ligneBonReception';
 import { NbIconLibraries } from '@nebular/theme';
+import { LigneRecette } from '../../../../modelsInt/ligne-recette';
+import { LigneBonReceptionService } from '../../../../stockServices/ligne-bon-Reception.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'ngx-ajout-bc',
@@ -19,6 +22,10 @@ prd:Produit={}
 prId:number=0
 lc: LigneBonCommande={}
 lstLign: LigneBonCommande[]=[]
+affiListLg: boolean =false;
+createdLigne: LigneBonCommande={}
+lstLigBC:LigneBonCommande[]=[]
+
 
 evaIcons = [];
   chevronR = "chevron-right";
@@ -41,7 +48,9 @@ evaIcons = [];
 
 
   onSubmit(){
-    console.log("submitted")
+    console.log("submitted");
+    
+
   }
 
   retreiveAllProduit(){
@@ -55,9 +64,40 @@ evaIcons = [];
   removeLineHandler(){
     console.log("chveron de suppression cliquer")
   }
+  sendLigne(qty : number):LigneBonCommande[]{
+    let lgn:LigneBonCommande={}
+    console.log("la quantit recu : ",qty)
+    
+    // console.log("l'Id de produit selectionnee", this.prId)
+    // this.createdLigne.produit.id= this.prId;
+    // this.createdLigne.quantity=qty
+   
+    // let prodName: string=''
+    // this.prodServivce.retreiveOneProduit(this.prId).subscribe(data=>{
+    //   prodName=data.name      
+    // })
+    console.log("Le nom ",this.prd.name)
+   lgn={"quantity":qty,
+       "produit":{"id":this.prd.id, 
+                  "name":this.prd.name}}
+
+    console.log(" La ligne recuperer est:", lgn)
+    this.lstLigBC.push(lgn)
+    console.log(this.lstLigBC)
+    this.affiListLg=true;
+    
+     return this.lstLigBC;
+  }
+
+
 
   addNewLineHandler(){
-    console.log("ajout de ligne activer")
+    console.log(" shevron")
+
+  }
+  receivedEditedLigneBonCom(newLst:LigneBonCommande[]){
+    console.log("la nouvelle liste",newLst)
+    this.lstLigBC=newLst
   }
 
   

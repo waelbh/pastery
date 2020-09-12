@@ -63,17 +63,11 @@
           </div>
           </div>
           <div *ngIf='prod.showRecette'>
-          <div class="text-center"><strong>Mille Feuille classique</strong></div>
-          <div class="text-center"><strong>Recette pour : 24 </strong></div>
+          <div class="text-center"><strong>{{prod.recette.designation}}</strong></div>
+          <div class="text-center"><strong>Recette pour : {{prod.recette.recettePour}}</strong></div>
           <nb-list>
-            <nb-list-item >
-              Arome Vamille 0.010 LITER
-            </nb-list-item>
-            <nb-list-item >
-              sucre poudre 0.100 KG
-            </nb-list-item>
-            <nb-list-item >
-              Maisene 0.200 KG
+            <nb-list-item *ngFor='let ligneRecette of prod.recette.ligneRecette'>
+              {{ligneRecette.matierepremier.name}} &nbsp;{{ligneRecette.consommation}}&nbsp; {{ligneRecette.matierepremier.unit}}
             </nb-list-item>
           </nb-list>
         </div>

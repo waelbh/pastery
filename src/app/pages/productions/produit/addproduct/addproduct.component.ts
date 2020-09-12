@@ -7,6 +7,10 @@ import {
 } from "@angular/core";
 import { NbIconLibraries } from "@nebular/theme";
 import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
+import { Famille } from '../../../../modelsInt/famille';
+import { MatierePremiere } from '../../../../modelsInt/matierePrem';
+import { FamilleService } from '../../../../stockServices/famille.service';
+import { MatpremService } from '../../../../stockServices/matprem.service';
 @Component({
   selector: "ngx-addproduct",
   templateUrl: "./addproduct.component.html",
@@ -118,22 +122,39 @@ export class AddproductComponent implements OnInit, OnChanges {
   formTitle: String = "";
   @Input() produitToEdit: any;
   @Input() status: String;
-  constructor(iconsLibrary: NbIconLibraries, private formBuilder: FormBuilder) {
+  constructor(iconsLibrary: NbIconLibraries, private formBuilder: FormBuilder, private familleServ: FamilleService,
+    private matPremServ: MatpremService) {
     this.evaIcons = Array.from(iconsLibrary.getPack("eva").icons.keys()).filter(
       (icon) => icon.indexOf("outline") === -1
     );
 
     iconsLibrary.registerFontPack("ion", { iconClassPrefix: "ion" });
   }
+
+  getAllFamilleExist() {
+    this.familleServ.retreiveAllFam().subscribe(data => {
+      this.familles = data
+    })
+
+  }
+
+  getAllMatPremExis() {
+    this.matPremServ.getMatPrem().subscribe(data => {
+      this.matierePremier = data
+    })
+  }
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes.produitToEdit);
     if (changes.produitToEdit.currentValue.status === "add") {
       this.formTitle = "ajouter des nouvelles produits";
+      this.ligneRecetteForm = this.formBuilder.group({
+        lignesRecettes: this.formBuilder.array([this.newRecetteLineBuilder()]),
+      });
     }
 
     if (changes.produitToEdit.currentValue.status === "edit") {
-      this.formTitle =
-        "Editer le produit : " + changes.produitToEdit.currentValue.name;
+      this.formTitle = "Editer le produit : " + changes.produitToEdit.currentValue.name;
+
       this.produit.name = changes.produitToEdit.currentValue.name;
       this.produit.stocklm = changes.produitToEdit.currentValue.stockLimit;
       this.produit.SelectedFamily = this.familles.filter(
@@ -141,13 +162,25 @@ export class AddproductComponent implements OnInit, OnChanges {
       )[0];
       this.produit.unit = changes.produitToEdit.currentValue.unit;
       this.produit.unitPrice = changes.produitToEdit.currentValue.unitPrice;
+
+      
+      this.recette.designation = changes.produitToEdit.currentValue.recette.designation;
+      this.recette.recettePour = changes.produitToEdit.currentValue.recette.recettePour;
+      this.ligneRecetteForm = this.formBuilder.group({
+        lignesRecettes: this.formBuilder.array(changes.produitToEdit.currentValue.recette.ligneRecette.map(ligne => this.formBuilder.group({
+          matierepremier: [ligne.matierepremier.id, Validators.required],
+          consommation: [ligne.consommation, Validators.required],
+        })
+             
+        )),
+      });
     }
   }
   ngOnInit(): void {
-    this.ligneRecetteForm = this.formBuilder.group({
-      lignesRecettes: this.formBuilder.array([this.newRecetteLineBuilder()]),
-    });
-    console.log("controls", this.lignesRecettes.controls);
+    this.getAllFamilleExist();
+    this.getAllMatPremExis();
+
+
   }
 
   newRecetteLineBuilder(): FormGroup {
@@ -155,6 +188,16 @@ export class AddproductComponent implements OnInit, OnChanges {
       matierepremier: [null, Validators.required],
       consommation: [null, Validators.required],
     });
+  }
+   matierePremName (id:any){
+     let parsedid;
+   typeof id === 'string' ?parsedid =parseInt(id) : parsedid = id;
+     return this.matierePremier.filter(matpP => matpP.id === parsedid)[0]?.name
+   }
+   matierePremUnit (id:any){
+    let parsedid;
+    typeof id === 'string' ?parsedid =parseInt(id) : parsedid = id;
+    return this.matierePremier.filter(matpP => matpP.id === parsedid)[0]?.unit
   }
   get lignesRecettes() {
     return this.ligneRecetteForm.get("lignesRecettes") as FormArray;

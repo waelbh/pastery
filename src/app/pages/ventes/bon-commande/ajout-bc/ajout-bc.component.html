@@ -32,16 +32,16 @@
                                     <thead>
                                       <tr>
                                         <th></th>
-                                        <th>Matiere premier</th>
-                                        <th>consommation</th>
+                                        <th>Produit</th>
+                                        <th>Quantité</th>
                                       </tr>
                                     </thead>
                         
-                                    <tbody>
+                                    <!-- <tbody>
                                       <tr *ngFor="let lignRec of  lstLign; let index = index; ">
-                                       <!-- <ngx-ligne-recette [ligneRecette]="lignRec" [index]="index" ></ngx-ligne-recette> -->
+                                       <ngx-ligne-recette [ligneRecette]="lignRec" [index]="index" ></ngx-ligne-recette>
                                       </tr>
-                                    </tbody>
+                                    </tbody> -->
                                   </table>
                         
                                   <button nbButton nbStepperNext class="float-right">Finish</button>
@@ -55,22 +55,29 @@
 
 
                                 <br/>
+                                <tr>
+                                  <td>
+                                <nb-select  class="form-group" placeholder="Selectionnez un Produit" name="prd" [(selected)]="prd" >
+                                    <nb-option  *ngFor="let pr of prods "   [value]="pr"> {{pr.name}} </nb-option>
+                                </nb-select></td>
                                 
-                                <nb-select  class="form-group" placeholder="Selectionnez un Produit" name="prd" [(selected)]="prId" >
-                                    <nb-option  *ngFor="let pr of prods "   [value]="pr?.id"> {{pr.name}} </nb-option>
-                                </nb-select>
-                                
-                                <br/>
-                                      <span >*</span>
-                                      <input type="number" name="quantity" nbInput fullWidth placeholder="Quantité" [(ngModel)]="lc.quantity" required>
+                                <br/><td>
+                                      
+                                      <input type="number" name="quantity" nbInput fullWidth placeholder="Quantité" [(ngModel)]="lc.quantity" required></td></tr>
+                                      <td><button nbbutton status='success' size='medium' (click)="sendLigne(lc.quantity)">ok</button></td>
                                    </form>    
                                  
                          </nb-card-body>
                        
                         </nb-card>
                       </div>
-                   
+                      <ngx-lst-ligne-bc *ngIf=affiListLg [lstLigBC]="lstLigBC"
+                                                        (removeLigneBonRecept)="receivedEditedLigneBonCom($event)"></ngx-lst-ligne-bc>
                     <button nbButton nbStepperNext  #buttonstate [disabled]="!brForm.valid" status="primary" class="edit" (click)="onSubmit()" >valider</button>
+
+
+
+       <!-- ********************************************************************************************************************************** -->
                 </nb-step>
                     <nb-step [label]="labelTwo">
                         <ng-template #labelTwo>Etape2</ng-template>

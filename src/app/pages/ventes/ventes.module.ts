@@ -23,6 +23,7 @@ import { FamillePrinComponent } from './famille-prin/famille-prin.component';
 import { FactDetailComponent } from './factures/fact-detail/fact-detail.component';
 import { BcDetailsComponent } from './bon-commande/bc-details/bc-details.component';
 import { AjoutBcComponent } from './bon-commande/ajout-bc/ajout-bc.component';
+import { LstLigneBcComponent } from './bon-commande/ajout-bc/lst-ligne-bc/lst-ligne-bc.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AjoutBcComponent } from './bon-commande/ajout-bc/ajout-bc.component';
                   FamillePrinComponent,
                   FactDetailComponent,
                   BcDetailsComponent,
-                  AjoutBcComponent],
+                  AjoutBcComponent,
+                  LstLigneBcComponent],
   imports: [
     CommonModule,
     VentesRoutingModule,

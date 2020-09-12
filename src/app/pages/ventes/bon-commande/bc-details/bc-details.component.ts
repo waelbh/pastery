@@ -18,6 +18,8 @@ export class BcDetailsComponent implements OnInit, OnChanges {
 
   constructor(private route: Router,
     private boncmdService: BonCommandeService) { }
+
+    
   ngOnChanges(changes: SimpleChanges) {
     console.log("on changes taset", changes.bc)
     if (changes.bc.currentValue !== undefined || changes.bc.currentValue !== changes.bc.previousValue) {
